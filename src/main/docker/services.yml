@@ -1,0 +1,30 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+name: app
+# PostgreSQL service commented out since using local instance
+# services:
+#   postgresql:
+#     image: postgres:16.2
+#     # Use a different port to avoid conflict with local PostgreSQL
+#     ports:
+#       - "5433:5432"
+#     environment:
+#       - POSTGRES_USER=koyo
+#       - POSTGRES_PASSWORD=secret
+#       - POSTGRES_DB=jdb
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U koyo -d jdb"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
+#       start_period: 10s
+#     volumes:
+#       - postgresql_data:/var/lib/postgresql/data/
+#     networks:
+#       - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgresql_data:
