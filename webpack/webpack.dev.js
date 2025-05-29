@@ -52,7 +52,21 @@ module.exports = async options =>
       port: 9060,
       proxy: [
         {
-          context: ['/api', '/services', '/management', '/v3/api-docs', '/h2-console'],
+          context: ['/api'],
+          target: 'http://localhost:5000',
+          pathRewrite: { '^/api': '' },
+          secure: false,
+          changeOrigin: true,
+          onProxyReq: (proxyReq, req) => {
+            // Copy authentication header from client request
+            const authHeader = req.headers.authorization;
+            if (authHeader) {
+              proxyReq.setHeader('Authorization', authHeader);
+            }
+          },
+        },
+        {
+          context: ['/services', '/management', '/v3/api-docs', '/h2-console'],
           target: `http${options.tls ? 's' : ''}://localhost:8080`,
           secure: false,
           changeOrigin: options.tls,

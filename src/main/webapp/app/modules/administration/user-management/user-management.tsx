@@ -77,7 +77,9 @@ export const UserManagement = () => {
         ...user,
         activated: !user.activated,
       }),
-    );
+    ).then(() => {
+      handleSyncList(); // Refresh the list after toggling
+    });
   };
 
   const account = useAppSelector(state => state.authentication.account);
@@ -144,7 +146,7 @@ export const UserManagement = () => {
         </thead>
         <tbody>
           {users.map((user, i) => (
-            <tr id={user.login} key={`user-${i}`}>
+            <tr id={user.login} key={`user-${i}`} className={!user.activated ? 'table-warning' : ''}>
               <td>
                 <Button tag={Link} to={user.login} color="link" size="sm">
                   {user.id}
@@ -155,11 +157,11 @@ export const UserManagement = () => {
               <td>
                 {user.activated ? (
                   <Button color="success" onClick={toggleActive(user)}>
-                    <Translate contentKey="userManagement.activated">Activated</Translate>
+                    <FontAwesomeIcon icon="check" /> <Translate contentKey="userManagement.activated">Activated</Translate>
                   </Button>
                 ) : (
-                  <Button color="danger" onClick={toggleActive(user)}>
-                    <Translate contentKey="userManagement.deactivated">Deactivated</Translate>
+                  <Button color="warning" onClick={toggleActive(user)}>
+                    <FontAwesomeIcon icon="clock" /> <Translate contentKey="userManagement.pending">Pending Activation</Translate>
                   </Button>
                 )}
               </td>

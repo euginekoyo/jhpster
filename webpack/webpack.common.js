@@ -68,6 +68,16 @@ module.exports = async options => {
       module: {
         rules: [
           {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env', '@babel/preset-react'],
+              },
+            },
+          },
+          {
             test: /\.tsx?$/,
             use: getTsLoaderRule(options.env),
             include: [utils.root('./src/main/webapp/app')],
@@ -130,6 +140,13 @@ module.exports = async options => {
           chunksSortMode: 'auto',
           inject: 'body',
           base: '/',
+          meta: {
+            'Content-Security-Policy': {
+              'http-equiv': 'Content-Security-Policy',
+              content:
+                "default-src 'self'; connect-src 'self' http://localhost:5000; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
+            },
+          },
         }),
         new MergeJsonWebpackPlugin({
           output: {
