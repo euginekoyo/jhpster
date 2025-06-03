@@ -7,24 +7,25 @@ import { Alert, Col, Row } from 'reactstrap';
 
 import { useAppSelector } from 'app/config/store';
 import MetabaseQuery from './metabaseQuery';
+import Metabase from 'app/modules/home/metabase';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
   return (
     <Row>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
-      </Col>
+      {/* <Col md="3" className="pad">*/}
+      {/*  <span className="hipster rounded" />*/}
+      {/* </Col>*/}
       <Col md="9">
-        <p className="lead">
-          <Translate contentKey="home.subtitle">Showing Metabase embedded Visuals ,Just some public links</Translate>
-        </p>
+        {/* <p className="lead">*/}
+        {/*  <Translate contentKey="home.subtitle">Showing Metabase embedded Visuals ,Just some public links</Translate>*/}
+        {/* </p>*/}
         {account?.login ? (
           <>
-            <h1 className="display-4">
-              <Translate contentKey="home.title">Welcome,{account.login}</Translate>
-            </h1>
+            {/* <h1 className="display-4">*/}
+            {/*  <Translate contentKey="home.title">Welcome,{account.login}</Translate>*/}
+            {/* </h1>*/}
             <div>
               <Alert color="success">
                 <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
@@ -33,7 +34,7 @@ export const Home = () => {
               </Alert>
             </div>
             <div className="embed-responsive embed-responsive-16by9">
-              <MetabaseQuery />
+              <Metabase />
             </div>
           </>
         ) : (
@@ -59,9 +60,9 @@ export const Home = () => {
             </Alert>
           </div>
         )}
-        <p>
-          <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
-        </p>
+        {/* <p>*/}
+        {/*  <Translate contentKey="home.question">If you have any question on JHipster:</Translate>*/}
+        {/* </p>*/}
       </Col>
     </Row>
   );
