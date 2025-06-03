@@ -231,7 +231,7 @@ metabase:
     api:
       url: http://localhost:3000/api/dataset
   session:
-    token: ${METABASE_TOKEN:6e04148d-c4ba-464e-a056-4ed19bca299c}
+    token: ${METABASE_TOKEN:e373939e-f6a0-4ecc-9c46-6b8af3678777}
   database:
     id: 4
 
