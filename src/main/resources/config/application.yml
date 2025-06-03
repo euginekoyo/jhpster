@@ -226,4 +226,21 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
+metabase:
+  sql:
+    api:
+      url: http://localhost:3000/api/dataset
+  session:
+    token: ${METABASE_TOKEN:e373939e-f6a0-4ecc-9c46-6b8af3678777}
+  database:
+    id: 4
+
+llm:
+  url: http://localhost:11434/api/generate
+  model: phi3
+  fallback:
+    model: tinyllama
+logging:
+  level:
+    com.mycompany.myapp.service: DEBUG
 # application:

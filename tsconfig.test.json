@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig",
+  "extends": "./tsconfig.json",
   "include": ["src/main/webapp/app", "src/main/webapp/microfrontends"],
   "exclude": [],
   "compilerOptions": {
